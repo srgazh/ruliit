@@ -50,7 +50,5 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            pgrep api-server | xargs -r kill
-            cd /var/www/ruliit.ru/backend
-            nohup ./api-server > api-server.log 2>&1 &
+            systemctl restart ruliit-backend
             caddy reload --config /etc/caddy/Caddyfile
