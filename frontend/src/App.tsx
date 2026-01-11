@@ -1,54 +1,31 @@
-import React, { useState } from 'react';
-import { 
-  Music, Terminal, ShieldAlert, Cpu, 
-  Send, Github, Mail, Server
+import { useState } from 'react';
+import {
+  Music, Terminal, ShieldAlert, Cpu,
+  Github, Mail, Server
 } from 'lucide-react';
 
 export default function App() {
   const [status, setStatus] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    
-    // Защита Honeypot
-    if (formData.get("website")) return;
 
-    setStatus("Отправка в ритме джаза...");
-    
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        body: formData,
-      });
-      if (response.ok) {
-        setStatus("Сообщение успешно доставлено!");
-        (e.target as HTMLFormElement).reset();
-      } else {
-        setStatus("Ошибка связи с бэкендом.");
-      }
-    } catch (error) {
-      setStatus("Ошибка: проверьте соединение.");
-    }
-  };
 
   return (
     <div className="min-h-screen bg-[#1a0b2e] text-[#e0def4] font-sans selection:bg-[#ff79c6]/30 overflow-x-hidden">
       {/* Психоделический фон */}
       <div className="fixed inset-0 z-0 opacity-20 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#bd93f9] blur-[150px] rounded-full animate-pulse"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#ff79c6] blur-[150px] rounded-full animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#ff79c6] blur-[150px] rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       <main className="relative z-10 max-w-5xl mx-auto px-6 py-12">
-        
+
         {/* Header */}
         <header className="mb-24 text-center md:text-left">
           <div className="inline-block p-2 mb-6 bg-[#50fa7b]/10 border border-[#50fa7b]/20 text-[#50fa7b] rounded-lg rotate-[-2deg] font-mono text-sm">
             <Music className="inline mr-2" size={18} /> srgazh_groove_v2.0
           </div>
           <h1 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-none">
-            ЖАРОВ СЕРГЕЙ <br/>
+            ЖАРОВ СЕРГЕЙ <br />
             <span className="text-[#ffb86c]">АЛЕКСЕЕВИЧ</span>
           </h1>
           <p className="text-2xl md:text-3xl font-medium text-[#bd93f9] italic tracking-tight">
@@ -94,39 +71,42 @@ export default function App() {
           </div>
         </section>
 
-        {/* Форма обратной связи */}
-        <section className="max-w-2xl mx-auto bg-[#282a36] p-10 rounded-3xl shadow-2xl border-t-4 border-[#ff79c6]">
-          <h2 className="text-4xl font-black text-white mb-8">СВЯЗАТЬСЯ</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <input type="text" name="website" className="hidden" tabIndex={-1} />
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-xs font-bold uppercase text-[#6272a4] mb-2 tracking-widest">Имя</label>
-                <input name="name" type="text" required className="w-full bg-[#1a0b2e] border border-[#44475a] rounded-xl p-4 text-white focus:ring-2 focus:ring-[#ff79c6] outline-none transition-all" />
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase text-[#6272a4] mb-2 tracking-widest">Email / TG</label>
-                <input name="contact" type="text" required className="w-full bg-[#1a0b2e] border border-[#44475a] rounded-xl p-4 text-white focus:ring-2 focus:ring-[#ff79c6] outline-none transition-all" />
-              </div>
-            </div>
-            <div>
-              <label className="block text-xs font-bold uppercase text-[#6272a4] mb-2 tracking-widest">Описание задачи</label>
-              <textarea name="message" required rows={4} className="w-full bg-[#1a0b2e] border border-[#44475a] rounded-xl p-4 text-white focus:ring-2 focus:ring-[#ff79c6] outline-none transition-all"></textarea>
-            </div>
-            <button type="submit" className="w-full py-5 bg-[#ff79c6] hover:bg-[#bd93f9] text-[#282a36] font-black uppercase tracking-[0.2em] rounded-xl transition-all flex items-center justify-center gap-3 group">
-              <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /> 
-              ОТПРАВИТЬ В ЭФИР
+        {/* Связаться */}
+        <section className="text-center">
+          {!status ? (
+            <button
+              onClick={() => {
+                const user = "srgazh";
+                const domain = "gmail.com";
+                window.location.href = `mailto:${user}@${domain}`;
+                setStatus("Ожидаю вашего письма!");
+              }}
+              className="px-12 py-6 bg-[#ff79c6] hover:bg-[#bd93f9] text-[#282a36] font-black uppercase tracking-[0.3em] rounded-full transition-all shadow-[0_0_30px_rgba(255,121,198,0.3)] hover:shadow-[0_0_50px_rgba(189,147,249,0.5)] active:scale-95 group mb-4"
+            >
+              СВЯЗАТЬСЯ
             </button>
-            {status && <p className="text-center text-[#50fa7b] font-mono animate-bounce">{status}</p>}
-          </form>
+          ) : (
+            <div className="p-8 bg-[#282a36] border border-[#ff79c6]/30 rounded-3xl inline-block backdrop-blur-md animate-in fade-in zoom-in duration-300">
+              <p className="text-xl font-bold text-[#50fa7b] mb-2">{status}</p>
+              <p className="text-sm text-[#6272a4] font-mono">srgazh [at] gmail.com</p>
+            </div>
+          )}
         </section>
       </main>
 
       <footer className="py-20 text-center border-t border-[#6272a4]/10 mt-20">
         <div className="flex justify-center gap-8 mb-6 text-[#6272a4]">
-           <a href="https://github.com/srgazh" className="hover:text-[#ff79c6] transition-colors"><Github /></a>
-           <a href="mailto:srgazh@ruliit.ru" className="hover:text-[#8be9fd] transition-colors"><Mail /></a>
+          <a href="https://github.com/srgazh" className="hover:text-[#ff79c6] transition-colors"><Github /></a>
+          <button
+            onClick={() => {
+              const user = "srgazh";
+              const domain = "gmail.com";
+              window.location.href = `mailto:${user}@${domain}`;
+            }}
+            className="hover:text-[#8be9fd] transition-colors"
+          >
+            <Mail />
+          </button>
         </div>
         <p className="font-mono text-sm text-[#6272a4]">
           &copy; 2026 srgazh | ruliit.ru | Administered on Debian
