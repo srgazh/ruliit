@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {
-  Music, Terminal, ShieldAlert,
+  Terminal, ShieldAlert,
   Mail, Globe, CreditCard, Box, ShoppingCart, Zap
 } from 'lucide-react';
 
@@ -69,7 +69,7 @@ export default function App() {
         {/* Header / Hero */}
         <header className="mb-32">
           <div className="inline-flex items-center gap-3 p-3 mb-8 bg-[#50fa7b]/10 border border-[#50fa7b]/20 text-[#50fa7b] rounded-2xl rotate-[-1deg] font-mono text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(80,250,123,0.1)]">
-            <Music size={16} className="animate-spin-slow" /> systems_architect_v2.5
+            <Terminal size={16} /> root@srgazh:~
           </div>
 
           <div className="grid lg:grid-cols-[1fr_400px] gap-12 items-start">
@@ -78,6 +78,7 @@ export default function App() {
                 ЖАРОВ <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff79c6] via-[#bd93f9] to-[#8be9fd] animate-gradient-x">СЕРГЕЙ</span>
               </h1>
+              <p className="font-mono text-[#6272a4] text-xl mb-6 tracking-[0.5em] uppercase pl-2">aka srgazh</p>
 
               <div className="space-y-6 max-w-2xl">
                 <p className="text-2xl md:text-3xl font-bold text-[#bd93f9] leading-tight italic">
@@ -102,7 +103,7 @@ export default function App() {
                   <pre className="font-mono text-[10px] text-[#6272a4] leading-tight">
                     {`$ uptime
 17:23:52 up 25 years, 
-$ ruliit --expertise
+$ srgazh --expertise
 [
   "Novell NetWare",
   "FreeBSD",
