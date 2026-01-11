@@ -33,14 +33,24 @@ jobs:
           cd backend
           go build -o api-server main.go
 
-      - name: Copy files to VPS
+      - name: Copy Frontend to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "frontend/dist/*,backend/api-server,backend/messages.db"
-          target: "/var/www/ruliit.ru/"
+          source: "frontend/dist/*"
+          target: "/var/www/ruliit.ru/dist/"
+          strip_components: 2
+
+      - name: Copy Backend to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "backend/api-server"
+          target: "/var/www/ruliit.ru/backend/"
           strip_components: 1
 
       - name: Restart Services on VPS
