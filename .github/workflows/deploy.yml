@@ -33,7 +33,7 @@ jobs:
           cd backend
           go build -o api-server main.go
 
-      - name: Copy Frontend to VPS
+      - name: Deploy Frontend
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.REMOTE_HOST }}
@@ -43,7 +43,7 @@ jobs:
           target: "/var/www/ruliit.ru/dist/"
           strip_components: 2
 
-      - name: Copy Backend to VPS
+      - name: Deploy Backend
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.REMOTE_HOST }}
