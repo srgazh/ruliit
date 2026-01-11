@@ -44,7 +44,7 @@ export default function App() {
           <div className="p-8 bg-[#282a36]/40 border border-[#6272a4]/30 rounded-2xl backdrop-blur-md hover:border-[#50fa7b]/50 transition-all group">
             <ShieldAlert className="text-[#50fa7b] mb-6 group-hover:scale-110 transition-transform" size={40} />
             <h2 className="text-2xl font-bold text-white mb-4">Troubleshooting</h2>
-            <p className="text-[#94a3b8] text-sm leading-relaxed">Воскрешение упавших сайтов, устранение 500 ошибок и чистка от вирусов.</p>
+            <p className="text-[#94a3b8] text-sm leading-relaxed">Администрирование WordPress и других CMS. Воскрешение упавших сайтов, устранение 500 ошибок и чистка от вирусов.</p>
           </div>
 
           <div className="p-8 bg-[#282a36]/40 border border-[#6272a4]/30 rounded-2xl backdrop-blur-md hover:border-[#8be9fd]/50 transition-all group">
@@ -63,7 +63,7 @@ export default function App() {
             <Terminal size={24} /> stack_config.yaml
           </h3>
           <div className="flex flex-wrap gap-4">
-            {["Debian", "Go (Golang)", "React 18", "TypeScript", "Caddy", "SQLite3", "Bash", "PHP", "TailwindCSS"].map(skill => (
+            {["Debian", "Go (Golang)", "React 18", "TypeScript", "WordPress", "Caddy", "CMS (Bitrix/Joomla)", "Bash", "PHP", "TailwindCSS"].map(skill => (
               <span key={skill} className="px-5 py-2 bg-[#1a0b2e] border border-[#bd93f9]/30 rounded-xl text-sm font-bold text-[#8be9fd] shadow-lg">
                 {skill}
               </span>
